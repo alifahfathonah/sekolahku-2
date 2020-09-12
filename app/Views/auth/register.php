@@ -10,62 +10,176 @@
   <div class="card text-negotiate">
     <div class="card-body register-card-body">
       <p class="text-center">pendaftaran siswa/i untuk akun <b>sekolahku</b></p>
-      <img src="/assets/image/auth/mobile_login-1.png" width="100%">
+      <img src="/assets/image/auth/register.png" width="100%">
       
-      <form action="/auth/proses-register" method="post">
+      <form action="register/proses-register" method="post">
         <?= csrf_field() ?>
         
-        <div class="input-group mt-3 <?= ($v->hasError('nama') ? 'is-invalid' : '') ?>">
-          <input type="text" class="form-control <?= ($v->hasError('nama') ? 'is-invalid' : '') ?>" 
+        <!-- siswa -->
+        <div class="input-group mt-3 <?= ($valid->hasError('nama') ? 'is-invalid' : '') ?>">
+          <input type="text" class="form-control <?= ($valid->hasError('nama') ? 'is-invalid' : '') ?>" 
           placeholder="Nama Lengkap"
           name="nama" value="<?= old('nama') ?>" autocomplete="off">
           
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-fw fa-user"></span>
+              <span class="fa fa-fw fa-user"></span>
             </div>
           </div>
         </div>
-        <div class="invalid-feedback mt-1 ml-1"><?= $v->getError('nama') ?></div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('nama') ?></div>
         
-        <div class="input-group mt-3 <?= ($v->hasError('username') ? 'is-invalid' : '') ?>">
-          <input type="text" class="form-control <?= ($v->hasError('username') ? 'is-invalid' : '') ?>" 
+        <div class="input-group mt-3 <?= ($valid->hasError('nisn') ? 'is-invalid' : '') ?>">
+          <input type="text" class="form-control <?= ($valid->hasError('nisn') ? 'is-invalid' : '') ?>" 
+          placeholder="NISN"
+          name="nisn" value="<?= old('nisn') ?>" autocomplete="off">
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa fa-fw fa-address-card"></i>
+            </div>
+          </div>
+        </div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('nisn') ?></div>
+        
+        <?php $kelas = ['X','XI','XII']; ?>
+        <div class="input-group mt-3 <?= ($valid->hasError('kelas') ? 'is-invalid' : '') ?>">
+          <select name="kelas" class="form-control custom-select <?= ($valid->hasError('kelas') ? 'is-invalid' : '') ?>">
+            <?php if(!old('kelas') || old('kelas') == '') : ?>
+              <option value="">Pilih Kelas</option>
+            <?php else : ?>
+              <option value="<?= old('kelas') ?>">Kelas <?= old('kelas') ?></option>
+            <?php endif; ?>
+            
+            <?php foreach ($kelas as $k) : ?>
+              <?php if(old('kelas') !== $k) : ?>
+                <option value="<?= $k ?>">Kelas <?= $k ?></option>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </select>
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa fa-fw fa-bell"></i>
+            </div>
+          </div>
+        </div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('kelas') ?></div>
+        
+        <div class="input-group mt-3 <?= ($valid->hasError('jurusan') ? 'is-invalid' : '') ?>">
+          <select name="jurusan" class="form-control custom-select <?= ($valid->hasError('jurusan') ? 'is-invalid' : '') ?>">
+            <?php if(!old('jurusan') || old('jurusan') == '') : ?>
+              <option value="">Pilih Jurusan</option>
+            <?php else : ?>
+              <option value="<?= old('jurusan') ?>"><?= old('jurusan') ?></option>
+            <?php endif; ?>
+            
+            <?php foreach ($dt_jurusan as $jurusan) : ?>
+              <?php if(old('jurusan') !== $jurusan['jurusan']) : ?>
+                <option value="<?= $jurusan['jurusan'] ?>"><?= $jurusan['jurusan'] ?></option>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </select>
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa fa-fw fa-book"></i>
+            </div>
+          </div>
+        </div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('jurusan') ?></div>
+        
+        <div class="input-group mt-3 <?= ($valid->hasError('tmp_lahir') ? 'is-invalid' : '') ?>">
+          <input type="text" class="form-control <?= ($valid->hasError('tmp_lahir') ? 'is-invalid' : '') ?>" 
+          placeholder="Tempat Lahir"
+          name="tmp_lahir" value="<?= old('tmp_lahir') ?>" autocomplete="off">
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa fa-fw fa-globe-asia"></i>
+            </div>
+          </div>
+        </div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('tmp_lahir') ?></div>
+        
+        <div class="input-group mt-3 <?= ($valid->hasError('tgl_lahir') ? 'is-invalid' : '') ?>">
+          <input type="text" class="form-control datepicker <?= ($valid->hasError('tgl_lahir') ? 'is-invalid' : '') ?>" 
+          placeholder="Tanggal Lahir" data-year="<?= date('Y') ?>"
+          name="tgl_lahir" value="<?= old('tgl_lahir') ?>" autocomplete="off">
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa fa-fw fa-calendar-alt"></i>
+            </div>
+          </div>
+        </div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('tgl_lahir') ?></div>
+        
+        <div class="input-group mt-3 <?= ($valid->hasError('no_hp') ? 'is-invalid' : '') ?>">
+          <input type="text" class="form-control <?= ($valid->hasError('no_hp') ? 'is-invalid' : '') ?>" 
+          placeholder="No. Hp"
+          name="no_hp" value="<?= old('no_hp') ?>" autocomplete="off">
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa fa-fw fa-phone"></i>
+            </div>
+          </div>
+        </div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('no_hp') ?></div>
+        
+        <div class="input-group mt-3 <?= ($valid->hasError('alamat') ? 'is-invalid' : '') ?>">
+          <textarea name="alamat" rows="3" class="form-control 
+          <?= ($valid->hasError('alamat') ? 'is-invalid' : '') ?>" placeholder="Alamat Lengkap"
+          autocomplete="off"><?= old('alamat') ?></textarea>
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <i class="fa fa-fw fa-home"></i>
+            </div>
+          </div>
+        </div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('alamat') ?></div>
+        
+        <!-- users -->
+        <div class="input-group mt-3 <?= ($valid->hasError('username') ? 'is-invalid' : '') ?>">
+          <input type="text" class="form-control <?= ($valid->hasError('username') ? 'is-invalid' : '') ?>" 
           placeholder="Username"
           name="username" value="<?= old('username') ?>" autocomplete="off">
           
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-fw fa-user-check"></span>
+              <i class="fa fa-fw fa-envelope"></i>
             </div>
           </div>
         </div>
-        <div class="invalid-feedback mt-1 ml-1"><?= $v->getError('username') ?></div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('username') ?></div>
         
-        <div class="input-group mt-3 <?= ($v->hasError('password') ? 'is-invalid' : '') ?>">
-          <input type="password" class="form-control <?= ($v->hasError('password') ? 'is-invalid' : '') ?>" 
+        <div class="input-group mt-3 <?= ($valid->hasError('password') ? 'is-invalid' : '') ?>">
+          <input type="password" class="form-control <?= ($valid->hasError('password') ? 'is-invalid' : '') ?>" 
           placeholder="Password" id="password"
           name="password" value="<?= old('password') ?>" autocomplete="off">
           
           <div class="input-group-append">
             <div class="input-group-text iconlock">
-              <span class="fas fa-fw fa-eye"></span>
+              <span class="fa fa-fw fa-eye"></span>
             </div>
           </div>
         </div>
-        <div class="invalid-feedback mt-1 ml-1"><?= $v->getError('password') ?></div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('password') ?></div>
         
-        <div class="input-group mt-3 <?= ($v->hasError('password1') ? 'is-invalid' : '') ?>">
-          <input type="password" class="form-control <?= ($v->hasError('password1') ? 'is-invalid' : '') ?>" 
+        <div class="input-group mt-3 <?= ($valid->hasError('password1') ? 'is-invalid' : '') ?>">
+          <input type="password" class="form-control <?= ($valid->hasError('password1') ? 'is-invalid' : '') ?>" 
           placeholder="Konfirmasi Password" id="password1"
           name="password1" autocomplete="off">
           
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-fw fa-lock"></span>
+              <span class="fa fa-fw fa-lock"></span>
             </div>
           </div>
         </div>
-        <div class="invalid-feedback mt-1 ml-1"><?= $v->getError('password1') ?></div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('password1') ?></div>
         
         <?php
           $first = substr(rand(), 0, 3);
@@ -79,20 +193,17 @@
           <?= $first.' + '.$last.' = ?' ?>
         </button>
         
-        <div class="input-group <?= ($v->hasError('captcha') || session()->get('capt_error') ? 'is-invalid' : '') ?>">
-          <input type="text" class="form-control <?= ($v->hasError('captcha') || session()->get('capt_error') ? 'is-invalid' : '') ?>"
+        <div class="input-group <?= ($valid->hasError('captcha') ? 'is-invalid' : '') ?>">
+          <input type="text" class="form-control <?= ($valid->hasError('captcha') ? 'is-invalid' : '') ?>"
           placeholder="Hasil Penjumlahan" id="captcha" name="captcha" autocomplete="off">
           
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-fw fa-lock"></span>
+              <span class="fa fa-fw fa-lock"></span>
             </div>
           </div>
         </div>
-        <div class="invalid-feedback mt-1 ml-1">
-          <?= (session()->get('capt_error') ? session()->get('capt_error') : $v->getError('captcha')) ?>
-          <?php session()->destroy('capt_error') ?>
-        </div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('captcha') ?></div>
         
         <div class="icheck-primary mt-3">
           <input type="checkbox" id="syaratketentuan" name="syaratketentuan" value="true">
@@ -105,7 +216,7 @@
       </form>
       
       <div class="text-center">
-        <a href="/auth/login">saya sudah memiliki akun!</a>
+        <a href="/login">saya sudah memiliki akun!</a>
       </div>
       
     </div>

@@ -30,4 +30,33 @@ $(document).ready(function() {
     });
   }
   
+  let customSelect = $('select.custom-select');
+  
+  if(customSelect) {
+    $(customSelect).select2({
+        theme: 'bootstrap4',
+    });
+  }
+  
+  let datepicker = $('.datepicker');
+  // minimal berumur 13 tahun
+  let maxYear = parseInt($(datepicker).data('year') - 13);
+  // maksimal berumur 21 tahun
+  let minYear = parseInt($(datepicker).data('year') - 21);
+  // tahun dimulai dari range maxYear dan minYear
+  let startYear = (maxYear + minYear) / 2;
+
+  if(datepicker) {
+    $(datepicker).daterangepicker({
+      singleDatePicker: true,
+      showDropdowns: true,
+      minYear: minYear,
+      maxYear: maxYear,
+      "startDate": `11/11/${startYear}`,
+      "opens": "right",
+      locale: {
+        format: 'DD/MM/YYYY'
+      },
+    });
+  }
 });

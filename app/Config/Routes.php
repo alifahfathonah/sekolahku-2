@@ -32,13 +32,16 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Auth::index');
 
-$routes->group('auth', function($routes) {
-  $routes->get('login', 'Auth::index');
-  $routes->get('register', 'Auth::register');
-  
-  $routes->post('proses-register', 'Auth::proses_register');
+$routes->group('login', function($routes) {
+  $routes->get('/', 'Auth::index');
   $routes->post('proses-login', 'Auth::proses_login');
 });
+
+$routes->group('register', function($routes) {
+  $routes->get('/', 'Auth::register');
+  $routes->post('proses-register', 'Auth::proses_register');
+});
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

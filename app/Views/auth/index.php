@@ -7,22 +7,16 @@
     <a href="/"><b>Sekolah</b>Ku</a>
   </div>
   
-  <div class="d-none text-negotiate" id="flashdata"
-  data-title="<?= session()->getFlashdata('title') ?>" 
-  data-pesan="<?= session()->getFlashdata('pesan') ?>"
-  data-type="<?= session()->getFlashdata('type') ?>">
-  </div>
-  
   <div class="card text-negotiate">
     <div class="card-body register-card-body">
       <p class="text-center">silahkan login terlebih dahulu untuk dapat menggunakan fitur-fitur di <b>sekolahku</b></p>
-      <img src="/assets/image/auth/prees_play-1.png" width="100%">
+      <img src="/assets/image/auth/login.png" width="100%">
       
-      <form action="/auth/proses-login" method="post">
+      <form action="/login/proses-login" method="post">
         <?= csrf_field() ?>
         
-        <div class="input-group mt-3 <?= ($v->hasError('username') ? 'is-invalid' : '') ?>">
-          <input type="text" class="form-control <?= ($v->hasError('username') ? 'is-invalid' : '') ?>" 
+        <div class="input-group mt-3 <?= ($valid->hasError('username') ? 'is-invalid' : '') ?>">
+          <input type="text" class="form-control <?= ($valid->hasError('username') ? 'is-invalid' : '') ?>" 
           placeholder="Username"
           name="username" value="<?= old('username') ?>" autocomplete="off">
           
@@ -32,10 +26,10 @@
             </div>
           </div>
         </div>
-        <div class="invalid-feedback mt-1 ml-1"><?= $v->getError('username') ?></div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('username') ?></div>
         
-        <div class="input-group mt-3 <?= ($v->hasError('password') ? 'is-invalid' : '') ?>">
-          <input type="password" class="form-control <?= ($v->hasError('password') ? 'is-invalid' : '') ?>" 
+        <div class="input-group mt-3 <?= ($valid->hasError('password') ? 'is-invalid' : '') ?>">
+          <input type="password" class="form-control <?= ($valid->hasError('password') ? 'is-invalid' : '') ?>" 
           placeholder="Password" id="password"
           name="password" value="<?= old('password') ?>" autocomplete="off">
           
@@ -45,7 +39,7 @@
             </div>
           </div>
         </div>
-        <div class="invalid-feedback mt-1 ml-1"><?= $v->getError('password') ?></div>
+        <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('password') ?></div>
         
         <div class="icheck-primary mt-3">
           <input type="checkbox" id="syaratketentuan" name="syaratketentuan" value="true">
@@ -58,7 +52,7 @@
       </form>
       
       <div class="text-center">
-        <a href="/auth/register">saya belum memiliki akun!</a>
+        <a href="/register">saya belum memiliki akun!</a>
       </div>
       
     </div>
