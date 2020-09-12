@@ -5,7 +5,7 @@ use CodeIgniter\model;
 class SiswaModel extends Model
 {
   protected $table         = 'siswa';
-  protected $allowedFields = ['nama','nisn_id','kelas','jurusan_id','tmp_lahir',
+  protected $allowedFields = ['nama','nisn_id','kelas','jurusan_id','tmp_lahir'
                               ,'tgl_lahir','no_hp','alamat','status_id'];
   protected $useTimestamps = true;
 	//--------------------------------------------------------------------//

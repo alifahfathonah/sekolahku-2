@@ -12,10 +12,10 @@ $(document).ready(function() {
   
   $('#syaratketentuan').click(function() {
     if($(this).val() == 'true') {
-      $('button[type="submit"]').removeAttr('disabled');
+      $('.confirm_terms').removeAttr('disabled');
       $(this).val('false');
     } else {
-      $('button[type="submit"]').attr('disabled','true');
+      $('.confirm_terms').attr('disabled','true');
       $(this).val('true');
     }
   });
@@ -60,4 +60,18 @@ $(document).ready(function() {
     });
   }
   
+  $('#confirm_register').click(function(e) {
+    e.preventDefault();
+    
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    });
+    
+  });
 });

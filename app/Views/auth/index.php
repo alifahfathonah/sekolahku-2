@@ -48,7 +48,7 @@
           </label>
         </div>
         
-        <button type="submit" class="btn btn-primary btn-block my-3" disabled>Login</button>
+        <button type="submit" class="btn btn-primary btn-block my-3 confirm_terms" disabled>Login</button>
       </form>
       
       <div class="text-center">

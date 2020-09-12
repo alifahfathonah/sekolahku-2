@@ -231,7 +231,30 @@
           </label>
         </div>
         
-        <button type="submit" class="btn btn-primary btn-block my-3" disabled>Register</button>
+        <!-- modal konfirmasi register -->
+        <div class="modal fade" id="confirm_register" tabindex="-1" role="dialog" 
+        aria-labelledby="confirm_registerLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirm_registerLabel">Apakah kamu sudah yakin?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <button type="submit" class="btn btn-primary">
+                  Register
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <button type="button" id="btn_confirm_register" class="btn btn-primary 
+        btn-block my-3 confirm_terms" disabled>
+          Register
+        </button>
       </form>
       
       <div class="text-center">
