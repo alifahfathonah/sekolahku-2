@@ -22,6 +22,8 @@
   <link rel="stylesheet" href="/assets/adminlte/plugins/daterangepicker/daterangepicker.css">
   <!-- Fonts -->
   <link rel="stylesheet" href="/assets/css/fonts.css">
+  <!-- render css -->
+  <?= $this->renderSection('stylesheet') ?>
 </head>
   
   <?= $this->renderSection('content') ?>

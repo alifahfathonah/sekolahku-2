@@ -1,20 +1,20 @@
 <?php namespace App\Controllers;
 
-use App\Models\AuthModel;
+use App\Models\UsersModel;
 use App\Models\SiswaModel;
 use App\Models\NisnModel;
 use App\Models\JurusanModel;
 
 class Auth extends BaseController
 {
-  protected $auth;
+  protected $users;
   protected $siswa;
   protected $nisn;
   protected $jurusan;
   
   public function __construct() 
   {
-    $this->auth    = new AuthModel();  
+    $this->users    = new UsersModel();  
     $this->siswa   = new SiswaModel();  
     $this->nisn    = new NisnModel();  
     $this->jurusan = new JurusanModel();  
@@ -43,16 +43,25 @@ class Auth extends BaseController
 	
 	public function proses_register()
 	{
-	  /*
-	  // cek nisn
+	  // cek nisn tersedia/tidak
 	  $nisn = $this->nisn->getNisn($this->request->getVar('nisn'));
 	  if($nisn == null)
 	  {
 	    $this->_pesan('maaf nisn yang anda masukkan salah/tidak terdaftar!', 'error');
 	    return redirect()->to('/register')->withInput();
+	  } else {
+	    // cek apakah nisn sudah digunakan/belum
+	    $nisn_id = $this->siswa->getNisnId($nisn['id']);
+  	  
+  	  if($nisn_id !== null)
+  	  {
+  	    $this->_pesan('nisn yang anda masukkan sudah terkait dengan akun SekolahKu.
+  	    jika dirasa ada orang lain yang menggunakan nisn anda, segeralah melapor ke pihak administrator', 'error');
+  	    return redirect()->to('/register')->withInput();
+  	  }
 	  }
 	  
-	  // cek jurusan
+	  // cek jurusan yang dipilih benar/tidak
 	  $jurusan = $this->jurusan->getJurusan($this->request->getVar('jurusan'));
 	  if($jurusan == null)
 	  {
@@ -60,13 +69,13 @@ class Auth extends BaseController
 	    return redirect()->to('/register')->withInput();
 	  }
 
-	  // cek captcha
+	  // cek captcha benar/tidak
 	  if($this->request->getVar('captcha') !== $this->request->getVar('resultCaptcha'))
 	  {
 	    $this->_pesan('maaf hasil penjumlahan kamu salah! harap ulangi','error');
 	    return redirect()->to('/register')->withInput();
 	  }
-	  */
+	  
 	  if(!$this->validate([
 	    // tabel siswa
 	    'nama' => [
@@ -123,8 +132,8 @@ class Auth extends BaseController
 	    return redirect()->to('/register')->withInput();
 	  }
 	  
-	  /*
-	  $this->auth->save([
+	  
+	  $this->users->save([
       'username'  => $this->request->getVar('username'),
       'password'  => password_hash($this->request->getVar('password'), PASSWORD_DEFAULT),
       'status_id' => 1, // aktif
@@ -135,7 +144,7 @@ class Auth extends BaseController
       'nama'       => $this->request->getVar('nama'),
       'nisn_id'    => $nisn['id'],
       'kelas'      => $this->request->getVar('kelas'),
-      'jurusan_id' => $this->request->getVar('jurusan_id'),
+      'jurusan_id' => $jurusan['id'],
       'tmp_lahir'  => $this->request->getVar('tmp_lahir'),
       'tgl_lahir'  => $this->request->getVar('tgl_lahir'),
       'no_hp'      => $this->request->getVar('no_hp'),
@@ -145,9 +154,9 @@ class Auth extends BaseController
 	  
 	  $this->_pesan('registrasi berhasil, silahkan login!');
 	  return redirect()->to('/login');
-	  */
 	}
 	
+	/*
 	public function proses_login()
 	{
 	  if(!$this->validate([
@@ -166,7 +175,7 @@ class Auth extends BaseController
 	  $username = $this->request->getVar('username');
 	  $password = $this->request->getVar('password');
 	  
-	  $user = $this->auth->getAuth($username);
+	  $user = $this->users->getAuth($username);
 	  
 	  if($user == null) {
 	    $this->_pesan('username kamu belum terdaftar!', 'error');
@@ -181,6 +190,7 @@ class Auth extends BaseController
 	  $this->_pesan('selamat datang administrator');
 	  return redirect()->to('/auth/login')->withInput();
 	}
+	*/
 	
   private function _pesan($pesan, $type = null)
   {

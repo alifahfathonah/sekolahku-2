@@ -2,10 +2,10 @@
 
 use CodeIgniter\model;
 
-class AuthModel extends Model
+class UsersModel extends Model
 {
   protected $table         = 'users';
-  protected $allowedFields = ['nama','username','password','level_id'];
+  protected $allowedFields = ['nama','username','password','status_id','level_id'];
   protected $useTimestamps = true;
 	//--------------------------------------------------------------------//
 	

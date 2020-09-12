@@ -1,19 +1,37 @@
 <?= $this->extend('layout/template_auth') ?>
 
+<?= $this->section('stylesheet') ?>
+<link rel="stylesheet" href="/assets/css/auth/register.css">
+<?= $this->endSection() ?>
+
 <?= $this->section('content') ?>
 <body class="hold-transition register-page">
 <div class="register-box mb-4">
-  <div class="register-logo mt-3 text-comprehension">
+  <div class="register-logo mt-5 text-comprehension">
     <a href="/"><b>Sekolah</b>Ku</a>
   </div>
 
   <div class="card text-negotiate">
     <div class="card-body register-card-body">
-      <p class="text-center">pendaftaran siswa/i untuk akun <b>sekolahku</b></p>
-      <img src="/assets/image/auth/register.png" width="100%">
+      
+      <div class="alert alert-success" role="alert">
+        <h5 class="alert-heading">Perhatian:</h5>
+        
+        <p>
+          Harap isi data pada formulir berikut dengan data yang sebenar-benarnya.
+        </p>
+        <p>
+          Data yang kamu isi harus bisa dipertanggungjawabkan kebenarannya, sesuai dengan
+          <a href="#" class="text-decoration-none font-weight-bold">Syarat dan Ketentuan</a> yang berlaku.
+        </p>
+      </div>
+      
+      <img src="/assets/image/auth/register.png" width="100%" class="d-none">
       
       <form action="register/proses-register" method="post">
         <?= csrf_field() ?>
+        
+        <h5 class="text-primary mt-4">Data Pribadi:</h5>
         
         <!-- siswa -->
         <div class="input-group mt-3 <?= ($valid->hasError('nama') ? 'is-invalid' : '') ?>">
@@ -141,6 +159,7 @@
         </div>
         <div class="invalid-feedback mt-1 ml-1"><?= $valid->getError('alamat') ?></div>
         
+        <h5 class="mt-3 text-primary">Data Akun:</h5>
         <!-- users -->
         <div class="input-group mt-3 <?= ($valid->hasError('username') ? 'is-invalid' : '') ?>">
           <input type="text" class="form-control <?= ($valid->hasError('username') ? 'is-invalid' : '') ?>" 

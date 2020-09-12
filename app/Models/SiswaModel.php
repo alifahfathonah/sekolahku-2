@@ -9,4 +9,8 @@ class SiswaModel extends Model
   protected $useTimestamps = true;
 	//--------------------------------------------------------------------//
 	
+	public function getNisnId($nisn_id)
+	{
+	  return $this->find($nisn_id);
+	}
 }
