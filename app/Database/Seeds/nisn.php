@@ -7,12 +7,19 @@ class Nisn extends Seeder
 {
 	public function run()
 	{
-		$data = [
-      'nisn'       => '098109',
-      'created_at' => Time::now(),
-      'updated_at' => Time::now()
+		$data =  [
+  		[
+        'nisn'       => '098109',
+        'created_at' => Time::now(),
+        'updated_at' => Time::now()
+  		],
+  		[
+        'nisn'       => '848084',
+        'created_at' => Time::now(),
+        'updated_at' => Time::now()
+  		],
 		];
 		
-		$this->db->table('nisn')->insert($data);
+		$this->db->table('nisn')->insertBatch($data);
 	}
 }

@@ -6,6 +6,8 @@ class Admin extends Migration
 {
 	public function up()
 	{
+	  $this->db->enableForeignkeyChecks();
+	  
 		$this->forge->addField([
 		  'id' => [
         'type'           => 'int',
@@ -53,7 +55,6 @@ class Admin extends Migration
 		
 		$this->forge->addKey('id', true);
 		$this->forge->addForeignKey('status_id','status','id');
-		$this->db->enableForeignkeyChecks();
 		$this->forge->createTable('admin');
 	}
 

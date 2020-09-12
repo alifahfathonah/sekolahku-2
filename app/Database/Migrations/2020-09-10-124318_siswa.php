@@ -6,6 +6,8 @@ class Siswa extends Migration
 {
 	public function up()
 	{
+	  $this->db->enableForeignkeyChecks();
+	  
 		$this->forge->addField([
 		  'id' => [
         'type'           => 'int',
@@ -54,10 +56,9 @@ class Siswa extends Migration
 		]);
 		
 		$this->forge->addKey('id', true);
-		$this->forge->addForeignKey('nisn_id','nisn','id');
+		$this->forge->addForeignKey('nisn_id','nisn','id','CASCADE','CASCADE');
 		$this->forge->addForeignKey('jurusan_id','jurusan','id');
 		$this->forge->addForeignKey('status_id','status','id');
-		$this->db->enableForeignkeyChecks();
 		$this->forge->createTable('siswa');
 	}
 

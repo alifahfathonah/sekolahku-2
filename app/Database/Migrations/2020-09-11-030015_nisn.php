@@ -6,6 +6,8 @@ class Nisn extends Migration
 {
 	public function up()
 	{
+	  $this->db->enableForeignkeyChecks();
+	  
 		$this->forge->addField([
 		  'id' => [
         'type'           => 'int',
@@ -25,7 +27,6 @@ class Nisn extends Migration
 		]);
 		
 		$this->forge->addKey('id', true);
-		$this->db->enableForeignkeyChecks();
 		$this->forge->createTable('nisn');
 	}
 

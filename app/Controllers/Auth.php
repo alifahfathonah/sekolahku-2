@@ -14,7 +14,7 @@ class Auth extends BaseController
   
   public function __construct() 
   {
-    $this->users    = new UsersModel();  
+    $this->users   = new UsersModel();  
     $this->siswa   = new SiswaModel();  
     $this->nisn    = new NisnModel();  
     $this->jurusan = new JurusanModel();  
