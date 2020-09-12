@@ -16,10 +16,7 @@
       
       <div class="alert alert-success" role="alert">
         <h5 class="alert-heading">Perhatian:</h5>
-        
-        <p>
-          Harap isi data pada formulir berikut dengan data yang sebenar-benarnya.
-        </p>
+        <p>Harap isi data pada formulir berikut dengan data yang sebenar-benarnya.</p>
         <p>
           Data yang kamu isi harus bisa dipertanggungjawabkan kebenarannya, sesuai dengan
           <a href="#" class="text-decoration-none font-weight-bold">Syarat dan Ketentuan</a> yang berlaku.
@@ -232,20 +229,29 @@
         </div>
         
         <!-- modal konfirmasi register -->
-        <div class="modal fade" id="confirm_register" tabindex="-1" role="dialog" 
-        aria-labelledby="confirm_registerLabel" aria-hidden="true">
-          <div class="modal-dialog">
+        <div class="modal fade" id="modalConfirmRegister" tabindex="-1" role="dialog" 
+        aria-labelledby="modalConfirmRegisterLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="confirm_registerLabel">Apakah kamu sudah yakin?</h5>
+              <div class="modal-header bg-danger">
+                <h5 class="modal-title" id="modalConfirmRegisterLabel">Apakah kamu sudah yakin?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
               <div class="modal-body">
+                <img src="/assets/image/fh2cj12864.png" width="100%">
+                <p>pastikan data kamu sudah diisi dengan benar semua, kemudian mohon diingat baik-baik untuk
+                username serta password kamu.</p>
+                <p>jika terdapat kendala yang tidak dimengerti segera hubungi admin <a href="/">SekolahKu</a></p>
+                
+                <p class="text-danger"><i>"jangan pernah membagikan akun kamu kepada siapapun, 
+                termasuk kepada admin <a href="/sekolahku" class="text-danger font-weight-bold">SekolahKu</a>"</i></p>
+                
                 <button type="submit" class="btn btn-primary">
-                  Register
+                  <i class="fa fa-fw fa-paper-plane"></i> Register
                 </button>
+                
               </div>
             </div>
           </div>

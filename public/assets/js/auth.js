@@ -60,18 +60,17 @@ $(document).ready(function() {
     });
   }
   
-  $('#confirm_register').click(function(e) {
-    e.preventDefault();
-    
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+  $('#btn_confirm_register').click(function() {
+    $('#modalConfirmRegister').modal({
+      keyboard: false,
+      backdrop: 'static',
+      show: true
     });
-    
+  });
+  
+  $('button[type=submit]').click(function() {
+    $(this).html(`<span class="spinner-border spinner-border-sm align-middle" 
+                  role="status" aria-hidden="true"></span>
+                  <span class="align-middle">loading...</span>`);
   });
 });
