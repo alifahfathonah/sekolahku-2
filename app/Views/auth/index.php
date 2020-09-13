@@ -3,7 +3,7 @@
 <?= $this->section('content') ?>
 <body class="hold-transition register-page">
 <div class="register-box mb-4">
-  <div class="register-logo mt-3 text-comprehension">
+  <div class="register-logo mt-5 text-comprehension">
     <a href="/"><b>Sekolah</b>Ku</a>
   </div>
   
@@ -22,7 +22,7 @@
           
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-fw fa-user-check"></span>
+              <span class="fas fa-fw fa-user"></span>
             </div>
           </div>
         </div>

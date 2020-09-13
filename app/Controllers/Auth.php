@@ -156,41 +156,59 @@ class Auth extends BaseController
 	  return redirect()->to('/login');
 	}
 	
-	/*
 	public function proses_login()
 	{
 	  if(!$this->validate([
 	    'username' => [
 	      'label' => 'Username',
-	      'rules' => 'required|min_length[6]|max_length[20]'
+	      'rules' => 'required|min_length[6]|max_length[120]'
 	    ],
 	    'password' => [
 	      'label' => 'Password',
-	      'rules' => 'required|min_length[6]'
+	      'rules' => 'required|min_length[6]|max_length[16]'
 	    ]
 	  ])) {
-	    return redirect()->to('/auth/login')->withInput();
+	    return redirect()->to('/login')->withInput();
 	  }
 	  
 	  $username = $this->request->getVar('username');
 	  $password = $this->request->getVar('password');
 	  
-	  $user = $this->users->getAuth($username);
+	  $user = $this->users->getUsername($username);
 	  
 	  if($user == null) {
 	    $this->_pesan('username kamu belum terdaftar!', 'error');
-	    return redirect()->to('/auth/login')->withInput();
+	    return redirect()->to('/login')->withInput();
 	  }
 	  
 	  if(!password_verify($password, $user['password'])) {
 	    $this->_pesan('password kamu salah!', 'error');
-	    return redirect()->to('/auth/login')->withInput();
+	    return redirect()->to('/login')->withInput();
 	  }
 	  
+	  if($user['status_id'] !== 1)
+	  {
+	    $this->_pesan('sepertinya akun kamu belum/tidak aktif, silahkan hubungi 
+      administrator untuk mengaktifkan akun kamu kembali', 'error');
+      
+      return redirect()->to('/login')->withInput();
+	  }
+	  
+	  session()->set([
+      'username'  => $user['username'],
+      'level_id'  => $user['level_id']
+	  ]);
+	  
 	  $this->_pesan('selamat datang administrator');
-	  return redirect()->to('/auth/login')->withInput();
+	  return redirect()->to('/home');
 	}
-	*/
+	
+	public function logout()
+	{
+	  session()->remove(['username','status_id','level_id']);
+	  $this->_pesan('selamat anda berhasil logout!');
+	  return redirect()->to('/login');
+	}
 	
   private function _pesan($pesan, $type = null)
   {
