@@ -54,4 +54,4 @@ _untuk nama database kamu bisa custom sesuai ke inginan, tinggal disesuiakan saj
 - open source (_tidak untuk diperjual belikan_)
 
 ## Status
-- Tahap Pembuatan.
+- Tahap Pengembangan.
